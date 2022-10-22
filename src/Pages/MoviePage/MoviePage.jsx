@@ -1,19 +1,22 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getQueryMovie } from 'services/Api';
 // import Title from 'components/Title/Title';
 import SearchBar from 'components/SearchBar/SearchBar';
 import MovieList from 'components/MovieList/MovieList';
 
 export default function MoviePage() {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const nameFilm = searchParams.get('name_film') ?? '';
+  console.log(movies);
 
   const onQuery = query => {
-    setQuery(query);
     setMovies([]);
+    setSearchParams({ name_film: query });
   };
 
   useEffect(() => {
@@ -21,7 +24,7 @@ export default function MoviePage() {
       try {
         setLoading(true);
         setError(null);
-        const data = await getQueryMovie(query);
+        const data = await getQueryMovie(nameFilm);
         setMovies([...data.results]);
       } catch (error) {
         setError(error);
@@ -29,8 +32,8 @@ export default function MoviePage() {
         setLoading(false);
       }
     };
-    if (query) fetchQuery();
-  }, [query]);
+    if (nameFilm) fetchQuery();
+  }, [nameFilm]);
 
   return (
     <div>

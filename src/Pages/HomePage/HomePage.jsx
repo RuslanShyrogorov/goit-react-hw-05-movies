@@ -26,7 +26,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <Box as="container">
+    <Box as="div">
       <Title text="Trending day movies" />
       {loading && <p>Loading ...</p>}
       {Boolean(movies.length) && <MovieList items={movies} />}

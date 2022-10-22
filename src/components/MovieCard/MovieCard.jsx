@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from 'constants/Box';
 import {
-  CardLink,
+  GoBackCardLink,
   MovieTitle,
   Text,
   Title,
@@ -26,13 +26,17 @@ export default function MovieCard({ movie }) {
 
   const imagePath = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : 'https://w7.pngwing.com/pngs/772/172/png-transparent-film-cinema-television-android.png';
+    : 'https://w7.pngwing.com/pngs/487/106/png-transparent-film-cinema-clapperboard-film-photography-rectangle-monochrome-thumbnail.png';
+
   const genres = movie.genres?.map(genre => (
     <Span key={genre.id}>{genre.name} </Span>
   ));
+
   return (
     <Box as="section" backgroundColor="white" widh="100%" p="8px">
-      <CardLink type="button">Go back</CardLink>
+      <GoBackCardLink type="button" to={from}>
+        Go back
+      </GoBackCardLink>
 
       <Box>
         <Box display="flex" mt="8px" mb="8px">
@@ -49,12 +53,12 @@ export default function MovieCard({ movie }) {
         </Box>
         <div>
           <AdditionalTitle>Additional information</AdditionalTitle>
-          <CardLink state={{ from }} to={castLink}>
+          <GoBackCardLink state={{ from }} to={castLink}>
             Cast
-          </CardLink>
-          <CardLink state={{ from }} to={reviewsLink}>
+          </GoBackCardLink>
+          <GoBackCardLink state={{ from }} to={reviewsLink}>
             Reviews
-          </CardLink>
+          </GoBackCardLink>
           <Outlet />
         </div>
       </Box>

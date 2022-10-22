@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const CardLink = styled(NavLink)`
+export const GoBackCardLink = styled(NavLink)`
   text-decoration: none;
   margin-bottom: ${p => p.theme.space[4]}px;
   font-size: ${p => p.theme.fontSizes.m};
